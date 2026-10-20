@@ -18,7 +18,7 @@ export default function Investigation() {
       </ol>
 
       <h3>The evidence</h3>
-      <Table head={["Marker", "Item", "Where it's placed", "What it tells police"]} rows={evidence.map((e) => [e.id, e.item, e.where, e.tells])} mono={[0]} bold={[1]} />
+      <Table head={["Marker", "Item", "Where it's placed", "Why it matters"]} rows={evidence.map((e) => [e.id, e.item, e.where, e.tells])} mono={[0]} bold={[1]} />
 
       <div className="callout warn">
         <h3>The Storm-O-Matic</h3>
@@ -26,7 +26,7 @@ export default function Investigation() {
       </div>
 
       <h3>Evidence log</h3>
-      <p className="prose">Each investigation team's scribe keeps this log on their notepad. It goes to police at the handover, along with the photos.</p>
+      <p className="prose">Each investigation team's scribe keeps this log on their notepad. It goes to Elf HQ at the handover, along with the photos.</p>
       <Table head={evidenceLogColumns} rows={[["E1", "", "", "", "", ""], ["E2", "", "", "", "", ""], ["E3", "", "", "", "", ""]]} mono={[0]} />
     </>
   );
