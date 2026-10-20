@@ -2,7 +2,7 @@ import { sessionMinutes, timelineBars, timelineRows, type Lane } from "../conten
 import { Table } from "../components/Table";
 
 const lanes: { lane: Lane[]; label: string }[] = [
-  { lane: ["all", "buffer"], label: "All teams" },
+  { lane: ["all"], label: "All teams" },
   { lane: ["triage"], label: "2 teams" },
   { lane: ["search"], label: "1 team" },
 ];

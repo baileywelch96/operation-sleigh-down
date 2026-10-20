@@ -59,6 +59,40 @@ export const scenario = {
   paragraphs: [
     "On his last run before Christmas, Santa radios Elf HQ to say he is stopping in the park for a rest. As he comes in to land, high winds and hail hit out of nowhere. The sleigh crashes and the radio cuts out mid-call.",
     "Elf HQ only has a map of the park. Santa's last message held the what3words of his rest spot, but it came through broken into three pieces. Teams must find the pieces and get to the crash.",
+    "It's a full storm callout in miniature: find the incident, make it safe, treat the injured, find the missing person and get everyone out.",
+  ],
+  aim: "Run a complete SES storm response, from the first radio call to the handover, in one connected scenario. Members practise navigation, comms, casualty care, search and rescue as one job, the way a real callout runs, instead of as separate drills.",
+  glance: [
+    ["What", "A scenario-based field exercise in a local park"],
+    ["How long", "2 hr 20 min, inside a 2.5 hr session"],
+    ["Who", "All members, trained and untrained. 3–9 mixed teams of 4–6"],
+    ["Run by", "Nick, Ken and Bailey"],
+    ["Casualties", "5–7 role players with moulage and casualty cards"],
+    ["Physical level", "Walking over varied terrain. Park still to be confirmed. No climbing, heights or water"],
+    ["Kit", "Radios, compasses, phones with CalTopo and what3words, first aid kit and rescue props"],
+  ] as [string, string][],
+  stages: [
+    { tag: "PHASES 1–3 · 50 MIN", name: "Find the crash", text: "Teams hear the Mayday, then navigate to three caches by compass bearing and CalTopo coordinates. Each team radios its word to Elf HQ, and HQ puts the three words together to locate the crash." },
+    { tag: "PHASE 4 · 10 MIN", name: "Make it safe", text: "The first team stops at the tape. They spot the storm hazards, report them and mark them on the map before anyone goes in. This is where they find out Santa is missing." },
+    { tag: "PHASES 5–6 · 30 MIN", name: "Treat and search", text: "Two teams triage and treat the injured elves, including a major bleed and an unresponsive casualty. At the same time, one team follows Santa's trail with a clue search, a line search and a sound sweep." },
+    { tag: "PHASES 7–9 · 50 MIN", name: "Rescue and hand over", text: "All teams come together to free Santa from under the branch with a simulated chainsaw cut. Then they package, carry and hand over every casualty, and debrief with everyone's CalTopo tracks." },
+  ],
+  groundRules: [
+    "Swap roles at every phase. Try the job you don't usually do.",
+    "Every untrained member is paired with a trained buddy.",
+    "Treat every prop as real: the saw, the power line, the hanging branch.",
+    "**\"No duff\"** means a real incident. Everything stops.",
+    "Stay inside the park boundary marked on the map.",
+    "Report everything to Elf HQ by radio. If it isn't on the radio, HQ doesn't know.",
+  ],
+  bring: [
+    "SES uniform and enclosed boots",
+    "Helmet and gloves",
+    "Torch or head torch, with spare batteries",
+    "Notepad and pen",
+    "A full water bottle",
+    "Phone, fully charged, with CalTopo and what3words installed",
+    "SES-issued power bank",
   ],
   twist:
     "When teams arrive, the elves are hurt but Santa is gone. He hit his head, got confused and wandered off. A second gust brought down a branch that pinned him.",
@@ -77,7 +111,7 @@ export const scenario = {
 
 // ---------- Timeline ----------
 export const sessionMinutes = 140;
-export type Lane = "all" | "triage" | "search" | "buffer";
+export type Lane = "all" | "triage" | "search";
 export const timelineBars: { label: string; start: number; end: number; lane: Lane }[] = [
   { label: "Brief", start: 0, end: 10, lane: "all" },
   { label: "Find the Words", start: 10, end: 40, lane: "all" },
@@ -87,8 +121,7 @@ export const timelineBars: { label: string; start: number; end: number; lane: La
   { label: "Search for Santa", start: 60, end: 90, lane: "search" },
   { label: "Free Santa", start: 90, end: 115, lane: "all" },
   { label: "Hand", start: 115, end: 125, lane: "all" },
-  { label: "Debrief", start: 125, end: 135, lane: "all" },
-  { label: "", start: 135, end: 140, lane: "buffer" },
+  { label: "Debrief", start: 125, end: 140, lane: "all" },
 ];
 export const timelineRows: [string, string, string][] = [
   ["0:00–0:10", "1. Safety brief and Mayday call", "Briefing, team split"],
@@ -99,8 +132,7 @@ export const timelineRows: [string, string, string][] = [
   ["1:00–1:30", "6. Search for Santa (1 team)", "Clue trail, line search, sound sweep"],
   ["1:30–1:55", "7. Free Santa (all teams)", "Simulated chainsaw ops, exclusion zone, casualty care"],
   ["1:55–2:05", "8. Handover and pack up", "Handover"],
-  ["2:05–2:15", "9. Debrief", "Reflection"],
-  ["2:15–2:20", "Buffer", "Catch-up if behind"],
+  ["2:05–2:20", "9. Debrief", "Reflection"],
 ];
 
 // ---------- Roles ----------
@@ -113,6 +145,7 @@ export const teamIntro =
   "Mixed teams, one per what3words word. Spread trained and untrained members evenly. Swap roles at every phase, and pair every untrained member with a trained buddy.";
 export const teamRoles: [string, string][] = [
   ["Team leader", "makes the calls"],
+  ["Safety officer", "watches for hazards"],
   ["Navigator", "compass and CalTopo"],
   ["Radio operator", "talks to HQ"],
   ["Scribe", "logs times, bearings, clues"],
@@ -132,29 +165,31 @@ export const intelCaches: [string, string][] = [
 ];
 export const sectorsText =
   "Sector A holds Santa's real trail. Sector B holds a decoy: a dropped reindeer harness and some hoof prints that lead nowhere. Clearing a sector and reporting \"nil find\" to HQ is a real search skill, so Sector B is still worth doing.";
-export const otherUnits = [
-  "Sign-in sheet on arrival: name, unit, and quals (first aid, land search, comms, chainsaw)",
-  "Mix units in every team. Don't keep a unit together",
-  "Spread quals evenly so every team has a navigator and a first aider",
-  "Coloured bibs or tape on each team for quick ID",
+export const teamForming = [
+  "Trainers set the teams before the day",
+  "Every team has a team leader, a safety officer and a radio operator. Nobody needs experience in these roles, so give them to people who want the practice",
+  "Rotate the roles between phases so more people get a turn",
+  "The team leader wears a printed team card so everyone can see who's in charge",
   "2-min comms brief: one channel, team call signs, HQ call sign \"Elf HQ\"",
 ];
 
 // ---------- CalTopo ----------
 export const caltopoRows: [string, string][] = [
   ["Before the day", "Trainers build an **Operation Sleigh Down** map with the park boundary, start point and Elf HQ. Keep cache and Santa locations off the shared map."],
-  ["1. Brief", "Share the map link (or a QR code) with every team. Each team starts recording its track."],
-  ["2. Find the Words", "Leg 1 by compass bearing. Leg 2 as coordinates to plot in CalTopo. Teams drop a marker on the shared map when they find their cache."],
+  ["1. Brief", "Share the map link (or a QR code) with every team. Show everyone how to start recording a track."],
+  ["2. Find the Words", "Step 1 of the route card is a compass bearing. Step 2 is coordinates to have a go at plotting in CalTopo. Teams try dropping a marker on the shared map when they find their cache."],
   ["3. Solve the location", "HQ broadcasts the three words. Every team enters them in its own what3words app, then plots the spot in CalTopo and plans a route."],
-  ["4. Scene safety", "First team marks each hazard on the shared map so HQ and later teams can see it."],
+  ["4. Scene safety", "First team tries marking each hazard on the shared map so HQ and later teams can see it."],
   ["6. Search for Santa", "HQ draws search sectors A and B on the map. The search team records its track to show coverage and marks each clue where it's found."],
   ["7. Free Santa", "Search team reports Santa's position as coordinates. HQ marks the casualty and the access route."],
-  ["9. Debrief", "Show every team's recorded track on a tablet or laptop. Compare routes and search coverage."],
+  ["9. Debrief", "Show every team's recorded track on a tablet or laptop. Compare routes and search coverage, and talk about what was easy or confusing in the app."],
 ];
-export const caltopoFallback = [
-  "Every team still carries a compass. If a phone dies or loses signal, they navigate by compass and HQ guides them by radio from the park map.",
-  "Pair members new to CalTopo with someone who uses it often.",
-  "Ask everyone to arrive with a fully charged phone and their SES-issued power bank.",
+export const caltopoTips = [
+  "Expect a mix. Some members use CalTopo often, others will be opening it for the first time.",
+  "Everyone uses CalTopo on their own phone. Put someone comfortable with it in each team so they can help the others along.",
+  "Trainers help anyone who gets stuck. Asking is part of the practice.",
+  "Every team also carries a compass and HQ has the park map, so a flat phone or lost signal doesn't stop anyone.",
+  "Arrive with a fully charged phone and your SES-issued power bank.",
 ];
 
 // ---------- Phases ----------
@@ -167,7 +202,7 @@ export const phases: Phase[] = [
     "Share the CalTopo map link. Teams start recording their track.",
   ] },
   { num: 2, title: "Find the Words", meta: "30 MIN · ALL TEAMS", steps: [
-    "Leg 1 by compass bearing. Leg 2 by coordinates plotted in CalTopo.",
+    "Each team follows its route card: a compass bearing first, then coordinates to plot in CalTopo.",
     "Inside each cache is one word plus its number (1, 2 or 3).",
     "Teams radio HQ with the word, drop a marker on the shared map and wait.",
   ], watch: "Radio procedure and phonetic alphabet. If a team is lost at 30 min, HQ \"receives a partial message\" with their word." },
@@ -200,7 +235,7 @@ export const phases: Phase[] = [
     "Each team hands over to \"paramedics\": who, what injury, what treatment, what time.",
     "Pack up kit and props.",
   ] },
-  { num: 9, title: "Debrief", meta: "10 MIN · ELF HQ", steps: [
+  { num: 9, title: "Debrief", meta: "15 MIN · ELF HQ", steps: [
     "What went well?",
     "What would you do differently?",
     "What did you learn from a role you don't usually do?",
@@ -214,8 +249,10 @@ export const teamCards = [
   { team: "Green Team · Elves", colour: "var(--pine)", riddle: "The second word was caught in the wind near something tall and green.", find: "a green present box" },
   { team: "Gold Team · Sleigh Bells", colour: "var(--tri-yel)", riddle: "The third word fell from the sleigh near where people stop to sit.", find: "a gold bell bag" },
 ];
+export const routeIntro =
+  "Each team gets one route card. The compass step takes them partway across the park, the CalTopo coordinates bring them to the right area, and the clue helps them spot the hidden cache.";
 export const cacheNote =
-  "Each cache holds a card: **WORD [1/2/3]: ________** \"Radio this to Elf HQ. Do not move until told.\" For a beginner team, give a bearing for Leg 2 instead of coordinates.";
+  "Inside each cache is a card: **WORD [1/2/3]: ________** \"Radio this to Elf HQ. Do not move until told.\" Fill in the bearing, distance and coordinates on the recce day. For a team new to navigation, swap step 2 for a second compass bearing.";
 
 // ---------- Search trail ----------
 export const trail: { item: string; where: string; skill?: string }[] = [
@@ -318,9 +355,8 @@ export const materials: { group: string; items: [string, string, string][] }[] =
     ["Elf hats", "4–6+", "Elf actors (spares for members)"],
     ["Moulage makeup", "1 kit", "Cuts and bruises"],
   ] },
-  { group: "Sign-in and team ID", items: [
-    ["Sign-in sheet", "1", "Name, unit and quals for team mixing"],
-    ["Coloured bibs or tape", "1 colour per team", "Quick team ID across units"],
+  { group: "Team ID", items: [
+    ["Printed team cards", "1 per team", "Worn by each team leader for quick ID"],
     ["Name tags and markers", "1 pack", "Many faces from other units"],
   ] },
   { group: "Welfare", items: [
@@ -350,7 +386,7 @@ export const setupRecce = [
   "Plan the clue trail, including an open grassy area",
   "Take bearings and distances, fill in the word cards",
   "Get the what3words for the crash site",
-  "Build the CalTopo map and get coordinates for each Leg 2",
+  "Build the CalTopo map and get the coordinates for each route card",
   "Check phone signal across the park",
   "Check council permission to use the park",
 ];

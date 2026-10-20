@@ -1,4 +1,4 @@
-import { intelCaches, otherUnits, scalingRows, sectorsText } from "../content";
+import { intelCaches, scalingRows, sectorsText, teamForming } from "../content";
 import { Table } from "../components/Table";
 
 export default function Scaling() {
@@ -10,8 +10,8 @@ export default function Scaling() {
       <Table head={["Team", "Cache card says"]} rows={intelCaches} bold={[0]} />
       <h3>Search sectors with 2 search teams</h3>
       <p className="prose">{sectorsText}</p>
-      <h3>Members from other units</h3>
-      <ul className="goals">{otherUnits.map((u) => <li key={u}>{u}</li>)}</ul>
+      <h3>Forming teams</h3>
+      <ul className="goals">{teamForming.map((u) => <li key={u}>{u}</li>)}</ul>
     </>
   );
 }

@@ -393,7 +393,10 @@ export class MaydayPlayer {
       const typing = wait(line.text.length * TYPE_MS_PER_CHAR + 650);
       await (synth ? Promise.all([typing, speak(line.text, voice, this.voiceSettings)]) : typing);
       if (this.stopped) return;
-      if (line.sfx) await wait(this.playSfx(line.sfx));
+      if (line.sfx) {
+        this.cb.onMode("static"); // the radio goes red and shakes on impact
+        await wait(this.playSfx(line.sfx));
+      }
       if (this.stopped) return;
       if (line.staticAfter) {
         this.cb.onMode("static");

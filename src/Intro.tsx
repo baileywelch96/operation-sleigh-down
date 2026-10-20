@@ -114,7 +114,8 @@ export function Intro({ startAt, onBegin }: Props) {
             maydayLines.slice(0, lineIndex + 1).map((l, i) => (
               <p key={i} className={i === lineIndex ? "current" : "past"}>
                 {i === lineIndex ? typed : l.text}
-                {i < lineIndex && l.staticAfter ? <span className="static-tag"> [static]</span> : null}
+                {(i < lineIndex || mode === "static") && l.sfx === "crash" ? <span className="static-tag"> [crash]</span> : null}
+                {(i < lineIndex || mode === "static") && l.staticAfter ? <span className="static-tag"> [static]</span> : null}
               </p>
             ))
           )}
