@@ -52,12 +52,14 @@ export function Baubles() {
   );
 }
 
-// A snowy treeline along the bottom of the title screen.
-export function Trees() {
-  const trees: [number, number][] = [[20, 70], [70, 100], [125, 60], [930, 65], [990, 105], [1050, 75], [1110, 55], [1170, 90]];
+// A snowy treeline along the bottom of the title screen: a stretchy ground strip,
+// plus a fixed-size grove in each corner so the trees never get cropped or squashed.
+const leftGrove: [number, number][] = [[10, 70], [60, 100], [115, 60]];
+const rightGrove: [number, number][] = [[10, 65], [70, 105], [130, 75], [190, 55], [250, 90]];
+
+function Grove({ trees, width, className }: { trees: [number, number][]; width: number; className: string }) {
   return (
-    <svg className="trees" viewBox="0 0 1200 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0 120 L0 104 Q300 88 600 102 T1200 98 L1200 120Z" fill="#f3f7f4" opacity=".9" />
+    <svg className={`grove ${className}`} viewBox={`0 0 ${width} 110`}>
       {trees.map(([x, h], i) => (
         <g key={i} transform={`translate(${x} ${110 - h})`}>
           <path d={`M0 ${h} L${h * 0.3} ${h * 0.55} L${h * 0.18} ${h * 0.55} L${h * 0.38} ${h * 0.25} L${h * 0.28} ${h * 0.25} L${h * 0.45} 0 L${h * 0.62} ${h * 0.25} L${h * 0.52} ${h * 0.25} L${h * 0.72} ${h * 0.55} L${h * 0.6} ${h * 0.55} L${h * 0.9} ${h}Z`} fill={i % 2 ? "#1f6b4f" : "#2f8f5b"} />
@@ -65,6 +67,18 @@ export function Trees() {
         </g>
       ))}
     </svg>
+  );
+}
+
+export function Trees() {
+  return (
+    <div className="trees" aria-hidden="true">
+      <Grove trees={leftGrove} width={180} className="left" />
+      <Grove trees={rightGrove} width={340} className="right" />
+      <svg className="ground" viewBox="0 86 1200 34" preserveAspectRatio="none">
+        <path d="M0 120 L0 104 Q300 88 600 102 T1200 98 L1200 120Z" fill="#f3f7f4" opacity=".9" />
+      </svg>
+    </div>
   );
 }
 

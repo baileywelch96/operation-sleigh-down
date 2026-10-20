@@ -81,7 +81,12 @@ h2:focus { outline: none; }
 .baubles { position: absolute; inset: 0 0 auto; height: 0; pointer-events: none; }
 .bauble { position: absolute; top: 14px; transform-origin: 50% 0; animation: sway 4s ease-in-out infinite alternate; filter: drop-shadow(0 6px 10px rgba(0,0,0,.3)); }
 @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
-.trees { position: absolute; left: 0; right: 0; bottom: 8px; width: 100%; height: 120px; pointer-events: none; }
+.trees { position: absolute; left: 0; right: 0; bottom: 8px; height: 150px; pointer-events: none; }
+.trees svg { position: absolute; display: block; }
+.trees .ground { left: 0; bottom: 0; width: 100%; height: 30px; }
+.trees .grove { bottom: 6px; height: calc(100% - 6px); width: auto; }
+.trees .grove.left { left: 0; }
+.trees .grove.right { right: 0; }
 .holly { width: 110px; height: auto; }
 .candy { height: 8px; background: repeating-linear-gradient(-45deg, var(--accent) 0 10px, var(--hero-fg) 10px 20px); }
 
@@ -139,7 +144,7 @@ h2:focus { outline: none; }
 .title-screen { min-height: 100vh; min-height: 100dvh; background: var(--hero-bg); color: var(--hero-fg); position: relative; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; animation: fadein 1.2s ease both; }
 @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 .title-screen .holly.big { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); top: 48px; width: 150px; }
-.title-inner { align-self: center; display: grid; gap: 20px; padding-block: 40px 130px; position: relative; z-index: 1; }
+.title-inner { align-self: center; display: grid; gap: 20px; padding-block: 40px 160px; position: relative; z-index: 1; }
 .title-inner .eyebrow { color: var(--gold); padding-right: 150px; }
 .title-inner h1 { font-size: clamp(3rem, 12vw, 6.5rem); font-weight: 800; text-transform: uppercase; line-height: .95; letter-spacing: .005em; }
 .title-inner h1 span { display: block; color: #f06a7c; text-shadow: 0 0 28px rgba(240,106,124,.35); }

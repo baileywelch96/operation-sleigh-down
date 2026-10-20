@@ -38,17 +38,19 @@ export const voiceDefaults = {
   ],
 };
 
-export type MaydayLine = { text: string; staticAfter?: number }; // staticAfter = seconds of static
+// staticAfter = seconds of static after the line. sfx = sound effect after the line.
+// storm = wind, rain and hail level from this line on (0 to 1). Effects only play without mayday.mp3.
+export type MaydayLine = { text: string; staticAfter?: number; sfx?: "crash"; storm?: number };
 export const maydayLines: MaydayLine[] = [
   { text: "Elf HQ, Elf HQ, this is Sleigh One. Do you copy? Over." },
   { text: "Last drop of the night is done. Sack's empty and the reindeer are puffed." },
   { text: "Bringing her down for a rest stop in the park. Location is…", staticAfter: 1.2 },
   { text: "Say again, location is…", staticAfter: 1.4 },
-  { text: "Hold on. Weather's turning fast. Wind's picking up. That's hail on the runners." },
-  { text: "Rudolph, keep that nose lit! I can't see the treeline!" },
-  { text: "Elves, hold on to something!", staticAfter: 0.8 },
-  { text: "Mayday, Mayday, Mayday. Sleigh One. We're going down!", staticAfter: 2.4 },
-  { text: "Elf HQ… we're down. Sleigh's on its side. My head's spinning…" },
+  { text: "Hold on. Weather's turning fast. Wind's picking up. That's hail on the runners.", storm: 0.45 },
+  { text: "Rudolph, keep that nose lit! I can't see the treeline!", storm: 0.7 },
+  { text: "Elves, hold on to something!", staticAfter: 0.8, storm: 0.85 },
+  { text: "Mayday, Mayday, Mayday. Sleigh One. We're going down!", staticAfter: 2.4, storm: 1, sfx: "crash" },
+  { text: "Elf HQ… we're down. Sleigh's on its side. My head's spinning…", storm: 0.35 },
   { text: "Elves are hurt. Send help. The words for our location are…", staticAfter: 2.6 },
 ];
 
