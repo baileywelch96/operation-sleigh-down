@@ -7,8 +7,8 @@ export const exercise = {
   subtitle: "Saving Santa",
   eyebrow: "SES training exercise · Trainer plan · Carrara Group",
   lead:
-    "A storm brings Santa's sleigh down in the park. Teams navigate to the crash, triage the injured elves, then search for a missing Santa and free him from under a fallen branch.",
-  facts: ["2 hr 20 min", "3–9 teams", "3 trainers", "5–7 casualty actors", "No climbing", "All skill levels"],
+    "A storm brings Santa's sleigh down in the park, and it was no accident. Rescue teams navigate to the crash, triage the injured elves and free a missing Santa. Investigation teams search the park for evidence that the Grinch was behind it.",
+  facts: ["2 hr 20 min", "3–9 teams", "Rescue + investigation", "5–7 casualty actors", "No climbing", "All skill levels"],
   footer: "Operation Sleigh Down · SES Christmas training plan · Draft for trainer review",
 };
 
@@ -59,14 +59,18 @@ export const scenario = {
   paragraphs: [
     "On his last run before Christmas, Santa radios Elf HQ to say he is stopping in the park for a rest. As he comes in to land, high winds and hail hit out of nowhere. The sleigh crashes and the radio cuts out mid-call.",
     "Elf HQ only has a map of the park. Santa's last message held the what3words of his rest spot, but it came through broken into three pieces. Teams must find the pieces and get to the crash.",
-    "It's a full storm callout in miniature: find the incident, make it safe, treat the injured, find the missing person and get everyone out.",
+    "Then the weather bureau calls Elf HQ. The storm formed over the park and nowhere else. Someone made it happen. Police suspect the Grinch, who has already fled back to Mount Crumpit. They've asked SES to search the park and preserve any evidence so they can bring him to justice.",
+    "It's a full storm callout in miniature: find the incident, make it safe, treat the injured, find the missing person, protect the evidence and get everyone out.",
   ],
+  grinch:
+    "The Grinch is long gone and never appears. Investigation teams don't chase anyone. Their job is the real SES one: find it, don't touch it, mark it, record it and hand it to police. Police collect and examine. Anything moved or handled can ruin the case.",
   aim: "Run a complete SES storm response, from the first radio call to the handover, in one connected scenario. Members practise navigation, comms, casualty care, search and rescue as one job, the way a real callout runs, instead of as separate drills.",
   glance: [
     ["What", "A scenario-based field exercise in a local park"],
     ["How long", "2 hr 20 min, inside a 2.5 hr session"],
     ["Who", "All members, trained and untrained. 3–9 mixed teams of 4–6"],
     ["Run by", "Nick, Ken and Bailey"],
+    ["Storylines", "Rescue (teams 1–3) and Investigation (teams 4 and up). With 3 teams, rescue only"],
     ["Casualties", "5–7 role players with moulage and casualty cards"],
     ["Physical level", "Walking over varied terrain. Park still to be confirmed. No climbing, heights or water"],
     ["Kit", "Radios, compasses, phones with CalTopo and what3words, first aid kit and rescue props"],
@@ -75,12 +79,14 @@ export const scenario = {
     { tag: "PHASES 1–3 · 50 MIN", name: "Find the crash", text: "Teams hear the Mayday, then navigate to three caches by compass bearing and CalTopo coordinates. Each team radios its word to Elf HQ, and HQ puts the three words together to locate the crash." },
     { tag: "PHASE 4 · 10 MIN", name: "Make it safe", text: "The first team stops at the tape. They spot the storm hazards, report them and mark them on the map before anyone goes in. This is where they find out Santa is missing." },
     { tag: "PHASES 5–6 · 30 MIN", name: "Treat and search", text: "Two teams triage and treat the injured elves, including a major bleed and an unresponsive casualty. At the same time, one team follows Santa's trail with a clue search, a line search and a sound sweep." },
-    { tag: "PHASES 7–9 · 50 MIN", name: "Rescue and hand over", text: "All teams come together to free Santa from under the branch with a simulated chainsaw cut. Then they package, carry and hand over every casualty, and debrief with everyone's CalTopo tracks." },
+    { tag: "PHASE 6B · 30 MIN · TEAMS 4+", name: "Evidence search", text: "Investigation teams line search taped-off areas for signs of the Grinch. Every find is marked, photographed, logged and cordoned for police. They find the Storm-O-Matic, still set for a second storm, and that puts the rescue on the clock." },
+    { tag: "PHASES 7–9 · 50 MIN", name: "Rescue and hand over", text: "Rescue teams free Santa from under the branch with a simulated chainsaw cut before the second storm hits. Then casualties go to paramedics, the evidence log goes to police, and everyone debriefs with their CalTopo tracks." },
   ],
   groundRules: [
     "Swap roles at every phase. Try the job you don't usually do.",
     "Every untrained member is paired with a trained buddy.",
     "Treat every prop as real: the saw, the power line, the hanging branch.",
+    "Evidence is never touched or moved. Mark it, record it, report it.",
     "**\"No duff\"** means a real incident. Everything stops.",
     "Stay inside the park boundary marked on the map.",
     "Report everything to Elf HQ by radio. If it isn't on the radio, HQ doesn't know.",
@@ -104,6 +110,7 @@ export const scenario = {
     "Major bleed care: wound packing and tourniquets",
     "Missing person search: clue trail, line search, sound sweep",
     "Simulated chainsaw ops to clear a fallen branch",
+    "Evidence awareness: search, preserve, record and hand over to police",
     "Tarp shelter and managing a confused casualty",
     "CalTopo: plotting, markers, tracks and search sectors",
   ],
@@ -111,7 +118,7 @@ export const scenario = {
 
 // ---------- Timeline ----------
 export const sessionMinutes = 140;
-export type Lane = "all" | "triage" | "search";
+export type Lane = "all" | "triage" | "search" | "evidence";
 export const timelineBars: { label: string; start: number; end: number; lane: Lane }[] = [
   { label: "Brief", start: 0, end: 10, lane: "all" },
   { label: "Find the Words", start: 10, end: 40, lane: "all" },
@@ -119,6 +126,7 @@ export const timelineBars: { label: string; start: number; end: number; lane: La
   { label: "Scene", start: 50, end: 60, lane: "all" },
   { label: "Elf triage", start: 60, end: 90, lane: "triage" },
   { label: "Search for Santa", start: 60, end: 90, lane: "search" },
+  { label: "Evidence search", start: 60, end: 90, lane: "evidence" },
   { label: "Free Santa", start: 90, end: 115, lane: "all" },
   { label: "Hand", start: 115, end: 125, lane: "all" },
   { label: "Debrief", start: 125, end: 140, lane: "all" },
@@ -130,8 +138,10 @@ export const timelineRows: [string, string, string][] = [
   ["0:50–1:00", "4. Scene safety and \"Where's Santa?\"", "Hazard ID, info gathering"],
   ["1:00–1:30", "5. Elf triage (2 teams)", "Triage, major bleeds, tarp shelter"],
   ["1:00–1:30", "6. Search for Santa (1 team)", "Clue trail, line search, sound sweep"],
-  ["1:30–1:55", "7. Free Santa (all teams)", "Simulated chainsaw ops, exclusion zone, casualty care"],
-  ["1:55–2:05", "8. Handover and pack up", "Handover"],
+  ["1:00–1:30", "6B. Evidence search (teams 4+)", "Close line search, preserving and logging evidence"],
+  ["1:30–1:55", "7. Free Santa (rescue teams)", "Simulated chainsaw ops, exclusion zone, casualty care"],
+  ["1:30–1:55", "7B. Hold the evidence scene (teams 4+)", "Cordon, scene log, plan to police"],
+  ["1:55–2:05", "8. Handover and pack up", "Casualty and evidence handover"],
   ["2:05–2:20", "9. Debrief", "Reflection"],
 ];
 
@@ -140,9 +150,10 @@ export const trainerRoles = [
   { tag: "PHASES 1–3, 8–9", name: "Elf HQ", text: "Incident control. Runs the brief, radio base and map. Solves the what3words, tasks the search team and leads the debrief." },
   { tag: "PHASES 4–5", name: "Scene lead", text: "Sets the hazards and elf casualties. Coaches triage and major bleed care." },
   { tag: "PHASES 6–7", name: "Search and rescue lead", text: "Lays the Santa clue trail and sets up the fallen branch. Runs the simulated chainsaw phase. A chainsaw-qualified member coaches the cut plan." },
+  { tag: "PHASES 6B–7B · TEAMS 4+", name: "Police (investigation)", text: "Lays the Grinch evidence and plays police. Takes calls about each find, switches off the Storm-O-Matic and receives the evidence handover. An extra leadership member if one is free; otherwise Elf HQ plays police by radio." },
 ];
 export const teamIntro =
-  "Mixed teams, one per what3words word. Spread trained and untrained members evenly. Swap roles at every phase, and pair every untrained member with a trained buddy.";
+  "Mixed teams. Teams 1–3 each find one what3words word and run the rescue. Teams 4 and up run the investigation. Spread trained and untrained members evenly. Swap roles at every phase, and pair every untrained member with a trained buddy.";
 export const teamRoles: [string, string][] = [
   ["Team leader", "makes the calls"],
   ["Safety officer", "watches for hazards"],
@@ -154,17 +165,18 @@ export const teamRoles: [string, string][] = [
 
 // ---------- Scaling ----------
 export const scalingRows: [string, string, string, string][] = [
-  ["3", "One team per word, as written", "2 teams triage, 1 team searches", "None"],
-  ["4–6", "Teams 1–3 find the words. Teams 4–6 find **intel caches** HQ also needs", "Add Elf Holly and Elf Nutmeg. 2 search teams split into sectors A and B", "None. Extra leadership, if available, can watch the caches and trail"],
-  ["7–9", "Run two crashes: **Sleigh One** (Santa) and **Sleigh Two** (Mrs Claus). Each has its own 3 words", "Two scenes side by side, each set up as written", "None. Scene lead and SAR lead run both scenes. Extra leadership, if available, can take a scene each"],
+  ["3", "One team per word, as written", "**Rescue only.** 2 teams triage, 1 team searches for Santa", "HQ reads the weather bureau call at the debrief as a \"to be continued\""],
+  ["4–6", "Teams 1–3 find the words. Teams 4–6 find the **first Grinch clues** (below)", "Teams 1–3 on **Rescue**. Teams 4–6 on **Investigation**, one evidence area each", "Police role (investigation lead), or Elf HQ plays police by radio"],
+  ["7–9", "As above. Teams 7–9 also find Grinch clue caches", "Teams 1–3 plus team 7 on Rescue (add Elf Holly and Elf Nutmeg). Teams 4–6, 8 and 9 on Investigation", "As above. A second police helper, if available, takes the outer areas"],
 ];
-export const intelCaches: [string, string][] = [
-  ["Team 4 · Holly", "\"HAZARD: power line down on the north side of the crash. Approach from the south.\""],
-  ["Team 5 · Tinsel Town", "\"MANIFEST: Santa and 6 elves were on board.\" (Teams must account for everyone.)"],
-  ["Team 6 · Snowflake", "\"ACCESS: vehicle access and the ambulance meeting point are at ________.\""],
+// What teams 4 and up find in their caches in phase 2. Each one points to an evidence area.
+export const grinchCaches: [string, string][] = [
+  ["Team 4 · Holly", "A tuft of green fur and a card: \"WEATHER BUREAU: storm cell formed over this park only. Not natural.\""],
+  ["Team 5 · Tinsel Town", "A crumpled note in messy handwriting: \"Not so jolly now, are we?\""],
+  ["Team 6 · Snowflake", "One giant boot print, pointing towards the north fence line"],
 ];
-export const sectorsText =
-  "Sector A holds Santa's real trail. Sector B holds a decoy: a dropped reindeer harness and some hoof prints that lead nowhere. Clearing a sector and reporting \"nil find\" to HQ is a real search skill, so Sector B is still worth doing.";
+export const evidenceAreasText =
+  "Split the park into evidence areas, one per investigation team: the edge of the crash site, the fence line and the trees where the Grinch hid. Tape each one off. With 7–9 teams, add the car park edge and the path to it. Areas can come up \"nil find\", and reporting that to HQ is a real search skill.";
 export const teamForming = [
   "Trainers set the teams before the day",
   "Every team has a team leader, a safety officer and a radio operator. Nobody needs experience in these roles, so give them to people who want the practice",
@@ -180,7 +192,8 @@ export const caltopoRows: [string, string][] = [
   ["2. Find the Words", "Step 1 of the route card is a compass bearing. Step 2 is coordinates to have a go at plotting in CalTopo. Teams try dropping a marker on the shared map when they find their cache."],
   ["3. Solve the location", "HQ broadcasts the three words. Every team enters them in its own what3words app, then plots the spot in CalTopo and plans a route."],
   ["4. Scene safety", "First team tries marking each hazard on the shared map so HQ and later teams can see it."],
-  ["6. Search for Santa", "HQ draws search sectors A and B on the map. The search team records its track to show coverage and marks each clue where it's found."],
+  ["6. Search for Santa", "The search team records its track to show coverage and marks each clue where it's found."],
+  ["6B. Evidence search", "HQ draws each evidence area on the map. Teams drop a numbered marker (E1, E2…) on every find, so police can see exactly where it was."],
   ["7. Free Santa", "Search team reports Santa's position as coordinates. HQ marks the casualty and the access route."],
   ["9. Debrief", "Show every team's recorded track on a tablet or laptop. Compare routes and search coverage, and talk about what was easy or confusing in the app."],
 ];
@@ -193,7 +206,7 @@ export const caltopoTips = [
 ];
 
 // ---------- Phases ----------
-export type Phase = { num: number; title: string; meta: string; steps: string[]; watch?: string; alert?: boolean };
+export type Phase = { num: number | string; title: string; meta: string; steps: string[]; watch?: string; alert?: boolean };
 export const phases: Phase[] = [
   { num: 1, title: "Safety brief and Mayday call", meta: "10 MIN · ELF HQ", steps: [
     "Safety brief first: boundaries, hydration, heat, and the stop word \"No duff\".",
@@ -204,9 +217,12 @@ export const phases: Phase[] = [
   { num: 2, title: "Find the Words", meta: "30 MIN · ALL TEAMS", steps: [
     "Each team follows its route card: a compass bearing first, then coordinates to plot in CalTopo.",
     "Inside each cache is one word plus its number (1, 2 or 3).",
-    "Teams radio HQ with the word, drop a marker on the shared map and wait.",
+    "Teams 4 and up find Grinch clue caches instead: green fur, a mocking note, a giant boot print.",
+    "Teams radio HQ with what they found, drop a marker on the shared map and wait.",
   ], watch: "Radio procedure and phonetic alphabet. If a team is lost at 30 min, HQ \"receives a partial message\" with their word." },
   { num: 3, title: "Solve the location", meta: "10 MIN · ELF HQ", steps: [
+    "The weather bureau calls Elf HQ: the storm formed over the park only. With the Grinch clues, police suspect sabotage.",
+    "HQ splits the operation. Teams 1–3 go to the crash on **Rescue**. Teams 4 and up are tasked to **Investigation**.",
     "HQ puts the three words in order and broadcasts them.",
     "Each team enters the words in its own what3words app, plots the spot in CalTopo and navigates to the crash.",
   ] },
@@ -223,7 +239,16 @@ export const phases: Phase[] = [
     "Do a line search across the open area, then a sound sweep: call \"Santa!\", stay silent, listen.",
     "Mark each clue in CalTopo. Radio HQ with Santa's coordinates and ask for more hands.",
   ], watch: "Clues logged by the scribe and regular sit-reps to HQ." },
-  { num: 7, title: "Free Santa", meta: "25 MIN · ALL TEAMS · SAR LEAD", steps: [
+  { num: "6B", title: "Evidence search", meta: "30 MIN · TEAMS 4+ · SAME TIME AS 5 AND 6", steps: [
+    "Each team takes one taped-off evidence area and does a close, slow line search.",
+    "On every find: stop and call it. Don't touch it. Mark it with a numbered flag (E1, E2…).",
+    "Photograph it in place, drop a CalTopo marker, and log it: number, time, finder, what it is, where.",
+    "Radio Elf HQ (police) with each find. Keep everyone else out of the area.",
+    "One team finds the **Storm-O-Matic**, still running, and a torn page of the plan: \"Second storm at 1:30. Finish the job.\"",
+    "They don't touch the machine. They cordon it and report it. Police switch it off. HQ warns the rescue teams.",
+  ], watch: "Hands in pockets. Nobody picks anything up, even to \"have a look\". One way in and out of each area. Every find logged before the next one.", alert: true },
+  { num: 7, title: "Free Santa", meta: "25 MIN · RESCUE TEAMS · SAR LEAD", steps: [
+    "HQ passes on the warning: a second storm is due at 1:30. Santa has to be out before it hits.",
     "Check the branch is stable and look for more hanging branches.",
     "One member keeps Santa calm and still. Others set the exclusion zone, post a spotter and radio HQ.",
     "The chainsaw team puts on PPE and talks through the cut plan out loud, as if it were real.",
@@ -231,19 +256,51 @@ export const phases: Phase[] = [
     "Others carry the pieces clear once the saw is \"off\".",
     "Once Santa is free: check injuries, splint the leg, stretcher carry to the sleigh.",
   ], watch: "The prop treated like a real saw. Nobody enters the zone while it \"runs\". Non-chainsaw members still have a job: spotter, zone control, comms, casualty care.", alert: true },
+  { num: "7B", title: "Hold the evidence scene", meta: "25 MIN · TEAMS 4+ · POLICE", steps: [
+    "Finish any area not yet searched, and report \"nil find\" for empty ones.",
+    "Keep the cordons. Log anyone who goes in or out of an area.",
+    "Check the evidence log against the CalTopo markers. Every E number on the map has a line in the log.",
+    "Prepare a short handover for police: what was found, where, when and by whom.",
+  ], watch: "A scene log that police could actually use. Numbers, times and names, not \"some fur near a tree\"." },
   { num: 8, title: "Handover and pack up", meta: "10 MIN · ALL", steps: [
-    "Each team hands over to \"paramedics\": who, what injury, what treatment, what time.",
+    "Rescue teams hand over to \"paramedics\": who, what injury, what treatment, what time.",
+    "Investigation teams hand the evidence log and photos to \"police\". Police announce there's enough to charge the Grinch.",
     "Pack up kit and props.",
   ] },
   { num: 9, title: "Debrief", meta: "15 MIN · ELF HQ", steps: [
     "What went well?",
     "What would you do differently?",
     "What did you learn from a role you don't usually do?",
-    "Show every team's CalTopo track. Compare routes and search coverage.",
+    "Show every team's CalTopo track and the evidence markers. Compare routes and search coverage.",
+    "Rescue and investigation each say how the other line affected their job.",
   ] },
 ];
 
+// ---------- Investigation (teams 4+) ----------
+export const evidence: { id: string; item: string; where: string; tells: string }[] = [
+  { id: "E1", item: "Tuft of green fur", where: "Snagged on the fence line", tells: "The Grinch came over the fence" },
+  { id: "E2", item: "Giant boot prints", where: "Soft ground near the fence, leading into the trees", tells: "His route in and out" },
+  { id: "E3", item: "Small dog paw prints", where: "Beside the boot prints", tells: "Max the dog was with him" },
+  { id: "E4", item: "Torn page of the plan", where: "Caught in a bush near the trees", tells: "\"Step 2: second storm at 1:30. Finish the job.\"" },
+  { id: "E5", item: "The Storm-O-Matic", where: "Hidden in the trees, lights still flashing", tells: "The weather machine itself, still set for a second storm" },
+  { id: "E6", item: "Dropped ornament hook", where: "Near the crash site edge", tells: "He came close to watch the crash" },
+];
+export const evidenceSteps: [string, string][] = [
+  ["Stop", "Call out the find. Everyone in the line stops where they are."],
+  ["Don't touch", "Hands in pockets. Don't pick it up, move it or step around it more than you need to."],
+  ["Mark", "Place a numbered flag next to it (E1, E2…). Never on top of it."],
+  ["Photograph", "A wide shot showing where it is, then a close-up with the flag in frame."],
+  ["Map", "Drop a CalTopo marker with the same number."],
+  ["Log", "Number, time, finder, what it is and exactly where."],
+  ["Protect", "Tape it off if needed. Keep one path in and out."],
+  ["Report", "Radio Elf HQ (police). Police collect it, never SES."],
+];
+export const evidenceLogColumns = ["No.", "Time", "Found by", "What it is", "Where (CalTopo / landmark)", "Photo taken"];
+export const stormOMatic =
+  "The investigation team finds the Storm-O-Matic in the trees, lights still flashing, with a torn page beside it: \"Second storm at 1:30.\" It's evidence and a hazard, so they **don't touch it**. They cordon it, report it, and police switch it off. HQ radios the rescue teams that the clock is running. If no team finds it by 1:20, police \"get a tip-off\" and send the nearest team to that area.";
+
 // ---------- Clue cards ----------
+
 export const teamCards = [
   { team: "Red Team · Rudolph", colour: "var(--tri-red)", riddle: "Santa's first word was dropped near where he'd feed his reindeer.", find: "a red stocking" },
   { team: "Green Team · Elves", colour: "var(--pine)", riddle: "The second word was caught in the wind near something tall and green.", find: "a green present box" },
@@ -286,6 +343,7 @@ export const hazards: [string, string, string, string][] = [
   ["Hail, slippery ground", "Crash site", "White paper balls scattered", "Warn the team, watch footing"],
   ["Second hanging branch", "Above Santa", "Pool noodle or flagged rope in the tree", "Spot it, mark it, keep people clear"],
   ["Unstable fallen branch", "On Santa", "The cardboard log itself", "Check it's stable, never reach under it"],
+  ["Storm-O-Matic, still running", "Evidence area in the trees", "Decorated box with flashing fairy lights", "Don't touch. Cordon, report, let police switch it off"],
 ];
 
 // ---------- Materials ----------
@@ -304,9 +362,8 @@ export const materials: { group: string; items: [string, string, string][] }[] =
   { group: "Clues and search trail", items: [
     ["Mayday card", "1", "Read by Elf HQ"],
     ["Team word cards, laminated", "3", "Red, green, gold"],
-    ["Cache word cards, laminated", "3 per crash", "WORD 1, 2, 3"],
-    ["Intel cache cards", "3", "Hazard, manifest, access. 4+ teams only"],
-    ["Decoy items for Sector B", "2–3", "Reindeer harness, hoof prints. 4+ teams only"],
+    ["Cache word cards, laminated", "3", "WORD 1, 2, 3"],
+    ["Grinch clue cache cards and items", "3", "Weather bureau card + fur, mocking note, boot print. 4+ teams only"],
     ["Red stocking", "1", "Cache 1"],
     ["Green present box", "1", "Cache 2"],
     ["Gold bell bag", "1", "Cache 3"],
@@ -355,6 +412,17 @@ export const materials: { group: string; items: [string, string, string][] }[] =
     ["Elf hats", "4–6+", "Elf actors (spares for members)"],
     ["Moulage makeup", "1 kit", "Cuts and bruises"],
   ] },
+  { group: "Grinch evidence (teams 4+)", items: [
+    ["Green faux fur", "1 small piece + spare", "E1 on the fence, plus a tuft for a clue cache"],
+    ["Giant boot print stencil", "1", "Cardboard cut-out, press into soft ground or dust with flour (E2)"],
+    ["Paw print stencil", "1", "Small dog prints beside the boots (E3)"],
+    ["Torn plan page", "1", "\"Step 2: second storm at 1:30. Finish the job.\" (E4)"],
+    ["Storm-O-Matic", "1", "Box painted green with dials, an aerial and battery fairy lights (E5)"],
+    ["Ornament hook", "1", "Dropped near the crash site (E6)"],
+    ["Numbered evidence flags", "20", "E1 to E20, small flags or cones"],
+    ["Evidence log sheets", "1 per investigation team + spares", "Columns: no., time, found by, what, where, photo"],
+    ["Barrier tape", "2 rolls", "Evidence area cordons, on top of the scene tape"],
+  ] },
   { group: "Team ID", items: [
     ["Printed team cards", "1 per team", "Worn by each team leader for quick ID"],
     ["Name tags and markers", "1 pack", "Many faces from other units"],
@@ -374,7 +442,8 @@ export const safetyRules = [
   "Keep the cardboard log light. It rests on Santa's leg but carries no weight.",
   "Bleed trainers or moulage only. No real cuts or sharp objects.",
   "Stop word: **\"No duff\"**. It means a real incident, and everything pauses.",
-  "Caches and trail clear of roads, water and steep ground.",
+  "Caches, trail and evidence areas clear of roads, water and steep ground.",
+  "Evidence props have no sharp edges, glass or real electrics. Fairy lights are battery only.",
   "Monitor weather conditions throughout.",
   "One trainer holds a real first aid kit at all times.",
 ];
@@ -384,6 +453,7 @@ export const setupRecce = [
   "Walk the park. Pick the start point, crash site and 3 cache spots",
   "Pick Santa's spot, 150–250 m from the crash, in or near trees",
   "Plan the clue trail, including an open grassy area",
+  "Pick 3–5 evidence areas and the Storm-O-Matic's hiding spot",
   "Take bearings and distances, fill in the word cards",
   "Get the what3words for the crash site",
   "Build the CalTopo map and get the coordinates for each route card",
@@ -394,6 +464,8 @@ export const setupDay = [
   "Hide the 3 caches",
   "Set up the crash site: sleigh, hazards, barrier tape",
   "Lay the Santa clue trail",
+  "Tape off the evidence areas and place the Grinch evidence",
+  "Switch on the Storm-O-Matic lights",
   "Set up the cardboard log and chainsaw prop at Santa's spot",
   "Brief casualty actors and apply moulage",
   "Set up Elf HQ: map, radios, whiteboard",
@@ -406,6 +478,8 @@ export const questions = [
   "How many members and teams? Are members from other units joining? Which leadership members can help on the day?",
   "Who plays Elf HQ, Scene lead and Search and rescue lead?",
   "Who is a chainsaw-qualified member who can coach the cut plan?",
+  "Who plays police for the investigation teams, or does Elf HQ cover it by radio?",
+  "Who makes the Storm-O-Matic?",
   "Who are our 5–7 casualty actors? (A second crash needs another set.)",
   "Do we own bleed trainers and training tourniquets, or borrow them? Who makes the cardboard saw and log?",
   "Can visiting units' members join our shared CalTopo map?",

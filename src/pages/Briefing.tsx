@@ -8,6 +8,7 @@ export default function Briefing() {
       <div className="prose">
         {scenario.paragraphs.map((p) => <p key={p}>{p}</p>)}
         <p className="twist"><strong>The twist:</strong> {scenario.twist}</p>
+        <p className="twist grinch"><strong>The Grinch:</strong> {scenario.grinch}</p>
       </div>
 
       <h3>Aim</h3>

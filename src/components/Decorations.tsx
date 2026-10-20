@@ -101,3 +101,139 @@ export function Holly({ className = "holly" }: { className?: string }) {
 export function Candy() {
   return <div className="candy" aria-hidden="true" />;
 }
+
+// ---------- Title screen scene ----------
+
+function Reindeer({ x, flip = 0 }: { x: number; flip?: number }) {
+  // A simple flying reindeer, facing right, about 54 x 40.
+  return (
+    <g transform={`translate(${x} ${flip})`}><g className="deer">
+      <path d="M8 20 L2 32 M14 22 L12 34 M34 22 L40 32 M40 20 L46 30" stroke="#7a4b2a" strokeWidth="3" strokeLinecap="round" />
+      <ellipse cx="24" cy="18" rx="20" ry="9" fill="#8b5a33" />
+      <ellipse cx="22" cy="21" rx="13" ry="4" fill="#c9a27a" opacity=".55" />
+      <path d="M40 14 L48 6" stroke="#8b5a33" strokeWidth="7" strokeLinecap="round" />
+      <ellipse cx="51" cy="6" rx="6" ry="4.5" fill="#8b5a33" />
+      <circle cx="56" cy="7" r="1.8" fill="#2b1a0e" />
+      <circle cx="51" cy="4" r="1" fill="#1a1a1a" />
+      <path d="M48 2 L45 -6 M46.5 -2 L42 -4 M52 1 L54 -7 M53 -3 L57 -5" stroke="#d9c39a" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+      <path d="M2 16 L-3 13" stroke="#8b5a33" strokeWidth="3" strokeLinecap="round" />
+      <rect x="10" y="12" width="28" height="3" rx="1.5" fill="#c62838" />
+      <circle cx="24" cy="16" r="2" fill="#f2c14e" />
+    </g></g>
+  );
+}
+
+export function FlyingSleigh() {
+  return (
+    <div className="flyer" aria-hidden="true">
+      <svg viewBox="-8 -12 330 92" className="flyer-svg">
+        {/* reins */}
+        <path d="M98 1 Q150 4 196 26 Q230 20 262 18" stroke="#f2c14e" strokeWidth="1.2" fill="none" opacity=".7" />
+        <Reindeer x={190} />
+        <Reindeer x={255} flip={-6} />
+        {/* sleigh */}
+        <path d="M14 30 L104 30 Q118 30 118 44 L118 52 Q118 60 108 60 L30 60 Q14 60 12 46Z" fill="#c62838" />
+        <path d="M14 30 L104 30 L102 36 L18 36Z" fill="#a3172b" />
+        <path d="M30 48 Q50 40 70 48 Q90 56 108 46" stroke="#f2c14e" strokeWidth="2" fill="none" />
+        <path d="M6 68 L116 68 Q128 68 128 58" stroke="#f2c14e" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+        <path d="M34 60 L30 68 M96 60 L100 68" stroke="#f2c14e" strokeWidth="3" />
+        {/* sack of presents */}
+        <path d="M16 30 Q10 6 30 4 Q44 6 42 30Z" fill="#7a4b2a" />
+        <rect x="24" y="-2" width="12" height="10" fill="#2f8f5b" />
+        <rect x="29" y="-2" width="2.5" height="10" fill="#f2c14e" />
+        {/* Santa */}
+        <path d="M58 30 Q56 10 72 8 Q88 10 86 30Z" fill="#d32f3f" />
+        <rect x="58" y="22" width="28" height="4" fill="#2b1a0e" />
+        <rect x="69" y="21" width="6" height="6" rx="1" fill="#f2c14e" />
+        <circle cx="74" cy="0" r="8" fill="#f1c8a5" />
+        <path d="M66 2 Q74 16 82 2 Q78 8 74 8 Q70 8 66 2Z" fill="#f4f7f5" />
+        <path d="M65 -2 Q74 -18 86 -10 L80 -4Z" fill="#d32f3f" />
+        <circle cx="87" cy="-10" r="3" fill="#f4f7f5" />
+        <rect x="64" y="-4" width="20" height="4" rx="2" fill="#f4f7f5" />
+        <circle cx="77" cy="-1" r="1" fill="#2b1a0e" />
+        {/* arm raised, holding the reins */}
+        <path d="M83 15 L91 7" stroke="#d32f3f" strokeWidth="6" strokeLinecap="round" />
+        <rect x="88" y="3" width="7" height="4" rx="1.5" transform="rotate(-45 91.5 5)" fill="#f4f7f5" />
+        <rect x="91" y="-2" width="8" height="7" rx="3.5" fill="#2b1a0e" />
+      </svg>
+    </div>
+  );
+}
+
+function Elf({ hat, wave = false }: { hat: string; wave?: boolean }) {
+  return (
+    <svg viewBox="0 0 60 80" className={`elf${wave ? " waving" : ""}`}>
+      <path d="M14 48 Q30 40 46 48 L50 80 L10 80Z" fill={hat} />
+      <rect x="12" y="58" width="36" height="4" fill="#2b1a0e" />
+      <rect x="27" y="57" width="6" height="6" fill="#f2c14e" />
+      <path d="M12 52 L4 44" stroke={hat} strokeWidth="6" strokeLinecap="round" />
+      <g className="elf-arm">
+        <path d="M48 52 L56 40" stroke={hat} strokeWidth="6" strokeLinecap="round" />
+        <circle cx="57" cy="38" r="3.5" fill="#f1c8a5" />
+      </g>
+      <path d="M13 32 L4 26 L15 38Z M47 32 L56 26 L45 38Z" fill="#e8b48f" />
+      <circle cx="30" cy="34" r="15" fill="#f1c8a5" />
+      <circle cx="24" cy="33" r="1.8" fill="#2b1a0e" />
+      <circle cx="36" cy="33" r="1.8" fill="#2b1a0e" />
+      <circle cx="21" cy="39" r="2.6" fill="#f2a1a1" opacity=".7" />
+      <circle cx="39" cy="39" r="2.6" fill="#f2a1a1" opacity=".7" />
+      <path d="M25 41 Q30 45 35 41" stroke="#2b1a0e" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <path d="M14 24 Q30 -10 52 6 Q40 6 46 22Z" fill={hat} />
+      <rect x="13" y="20" width="34" height="6" rx="3" fill="#f4f7f5" />
+      <circle cx="53" cy="6" r="4" fill="#f2c14e" />
+    </svg>
+  );
+}
+
+const presents: [number, number, number, string, string][] = [
+  // [left px from the grove edge, width, height, box colour, ribbon colour]
+  [0, 34, 28, "#d32f3f", "#f2c14e"],
+  [30, 26, 36, "#f2c14e", "#2f8f5b"],
+  [52, 30, 22, "#3f7fbf", "#f4f7f5"],
+];
+
+function Presents() {
+  return (
+    <svg viewBox="0 -4 86 40" className="presents">
+      {presents.map(([x, w, h, box, ribbon], i) => (
+        <g key={i} transform={`translate(${x} ${36 - h})`}>
+          <rect width={w} height={h} rx="2" fill={box} />
+          <rect x={w / 2 - 2.5} width="5" height={h} fill={ribbon} />
+          <rect y={h * 0.35} width={w} height="4" fill={ribbon} />
+          <path d={`M${w / 2} 0 Q${w / 2 - 9} -8 ${w / 2 - 6} 0 M${w / 2} 0 Q${w / 2 + 9} -8 ${w / 2 + 6} 0`} stroke={ribbon} strokeWidth="2.5" fill="none" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+export function Workshop() {
+  return (
+    <div className="workshop" aria-hidden="true">
+      <div className="elves left"><Elf hat="#2f8f5b" wave /><Presents /></div>
+      <div className="elves right"><Presents /><Elf hat="#c62838" /></div>
+    </div>
+  );
+}
+
+// Giant green boot prints that tiptoe across the snow. Someone was here...
+const STEPS = 9;
+export function SneakyPrints() {
+  return (
+    <div className="prints" aria-hidden="true">
+      {Array.from({ length: STEPS }, (_, i) => (
+        <svg
+          key={i}
+          viewBox="0 0 24 40"
+          className="print"
+          style={{ left: `${24 + i * 4.8}%`, bottom: i % 2 ? 34 : 18, animationDelay: `${i * 0.55}s` }}
+        >
+          <ellipse cx="12" cy="13" rx="10" ry="12" />
+          <ellipse cx="12" cy="33" rx="7" ry="6" />
+          <circle cx="4" cy="2" r="2.6" /><circle cx="10" cy="-0.5" r="2.6" /><circle cx="16" cy="0" r="2.6" /><circle cx="21" cy="3" r="2.4" />
+        </svg>
+      ))}
+      <span className="prints-note">Who left these?</span>
+    </div>
+  );
+}

@@ -219,6 +219,7 @@ ul.goals li::before { content: ""; flex: none; width: 8px; height: 8px; border-r
 .b-all { background: var(--accent-soft); border: 1px solid var(--accent); }
 .b-triage { background: var(--tri-red-soft); border: 1px solid var(--tri-red); }
 .b-search { background: var(--pine-soft); border: 1px solid var(--pine); }
+.b-evidence { background: var(--tri-yel-soft); border: 1px dashed var(--tri-yel); }
 .scale { display: grid; grid-template-columns: 110px 1fr; gap: 10px; }
 .ticks { position: relative; height: 18px; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
 .ticks span { position: absolute; transform: translateX(-50%); }
@@ -345,3 +346,68 @@ tr.done td:not(.chk) { color: var(--muted); text-decoration: line-through; }
 .vp-link:hover { color: #fff; }
 .vp-note { font-size: .78rem; color: #7f968b; }
 .skip:disabled { opacity: .5; cursor: default; }
+
+/* ---------- Grinch investigation ---------- */
+.twist.grinch { background: var(--pine-soft); }
+.twist.grinch strong { color: var(--pine); }
+.evidence-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; }
+.evidence-steps li { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.evidence-steps .es-num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--pine); color: var(--surface); display: grid; place-items: center; font-family: var(--display); font-weight: 800; }
+.evidence-steps div { display: grid; gap: 2px; min-width: 0; }
+.evidence-steps span:not(.es-num) { font-size: .92rem; color: var(--muted); }
+
+/* ---------- Title screen scene: sleigh, elves, presents, boot prints ---------- */
+.flyer { position: absolute; top: 46px; left: 0; width: 280px; max-width: 60vw; pointer-events: none; z-index: 0;
+  transform: translateX(55vw); animation: fly 16s linear 1.5s infinite; }
+.flyer-svg { width: 100%; height: auto; display: block; overflow: visible; filter: drop-shadow(0 6px 10px rgba(0,0,0,.25)); }
+.flyer .deer { animation: gallop .5s ease-in-out infinite alternate; }
+.flyer g:nth-of-type(3) .deer { animation-delay: .25s; }
+@keyframes fly {
+  0%   { transform: translate(-320px, 30px) rotate(-4deg); }
+  25%  { transform: translate(22vw, 0) rotate(-2deg); }
+  50%  { transform: translate(50vw, 18px) rotate(1deg); }
+  75%  { transform: translate(78vw, -4px) rotate(-2deg); }
+  100% { transform: translate(calc(100vw + 40px), 10px) rotate(-4deg); }
+}
+@keyframes gallop { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+
+.workshop { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; z-index: 0;
+  padding-left: max(150px, env(safe-area-inset-left, 0px)); padding-right: max(280px, env(safe-area-inset-right, 0px)); }
+.elves { display: flex; align-items: flex-end; gap: 4px; }
+.elf { width: 52px; height: auto; animation: peek 4s ease-in-out infinite; transform-origin: 50% 100%; }
+.elves.right .elf { animation-delay: 2s; }
+.elf.waving .elf-arm { transform-origin: 48px 52px; animation: wave 1.2s ease-in-out infinite; }
+@keyframes peek { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-28deg); } }
+.presents { width: 78px; height: auto; }
+
+.prints { position: absolute; left: 0; right: 0; bottom: 0; height: 80px; pointer-events: none; z-index: 0; }
+.print { position: absolute; width: 22px; height: auto; fill: #4fbf6f; opacity: .85; transform: rotate(78deg);
+  animation: tiptoe 14s ease-in-out infinite; }
+.print:nth-child(even) { transform: rotate(98deg) scaleX(-1); }
+@keyframes tiptoe {
+  0%, 4% { opacity: 0; }
+  8%, 60% { opacity: .85; }
+  80%, 100% { opacity: 0; }
+}
+.prints-note { position: absolute; left: 58%; bottom: 66px; font-family: var(--mono); font-size: .72rem; color: #8fe3a6; letter-spacing: .06em;
+  opacity: 0; animation: note 14s ease-in-out 5s infinite; white-space: nowrap; }
+@keyframes note { 0%, 4% { opacity: 0; } 10%, 40% { opacity: .9; } 55%, 100% { opacity: 0; } }
+
+@media (max-width: 560px) {
+  .flyer { width: 180px; top: 40px; }
+  .workshop { padding-left: 8px; padding-right: 8px; bottom: 4px; }
+  .elf { width: 38px; }
+  .presents { width: 56px; }
+  .elves.left .presents, .elves.right .presents { display: none; }
+  .prints-note { display: none; }
+  .print { width: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flyer { transform: translateX(45vw); }
+  .print { opacity: .85; }
+}
+
+/* Leave a band of sky above the heading for the sleigh to fly through. */
+.title-inner { padding-top: 150px; }
+@media (max-width: 560px) { .title-inner { padding-top: 110px; } }

@@ -5,6 +5,7 @@ const lanes: { lane: Lane[]; label: string }[] = [
   { lane: ["all"], label: "All teams" },
   { lane: ["triage"], label: "2 teams" },
   { lane: ["search"], label: "1 team" },
+  { lane: ["evidence"], label: "Teams 4+" },
 ];
 const ticks = [0, 30, 60, 90, 120, 140];
 const pct = (m: number) => `${(m / sessionMinutes) * 100}%`;

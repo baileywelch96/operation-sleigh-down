@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { exercise, maydayLines } from "./content";
 import { MaydayPlayer, type RadioMode } from "./radio";
-import { Baubles, Candy, Holly, Lights, Snow, Trees } from "./components/Decorations";
+import { Baubles, Candy, FlyingSleigh, Holly, Lights, SneakyPrints, Snow, Trees, Workshop } from "./components/Decorations";
 import { loadVoiceSettings, type VoiceSettings } from "./voice";
 
 type Stage = "ready" | "playing" | "fading" | "title";
@@ -73,7 +73,10 @@ export function Intro({ startAt, onBegin }: Props) {
         <Snow />
         <Baubles />
         <Holly className="holly big" />
+        <FlyingSleigh />
         <Trees />
+        <Workshop />
+        <SneakyPrints />
         <div className="wrap title-inner">
           <div className="eyebrow">{exercise.eyebrow}</div>
           <h1>Operation <span>Sleigh Down</span></h1>
