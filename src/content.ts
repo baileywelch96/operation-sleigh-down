@@ -59,11 +59,11 @@ export const scenario = {
   paragraphs: [
     "On his last run before Christmas, Santa radios Elf HQ to say he is stopping in the park for a rest. As he comes in to land, high winds and hail hit out of nowhere. The sleigh crashes and the radio cuts out mid-call.",
     "Elf HQ only has a map of the park. Santa's last message held the what3words of his rest spot, but it came through broken into three pieces. Teams must find the pieces and get to the crash.",
-    "Then the weather bureau calls Elf HQ. The storm formed over the park and nowhere else. Someone made it happen. The Grinch is the prime suspect, and he's already fled back to Mount Crumpit. SES is asked to search the park for items of interest and log them, so police can follow up separately.",
+    "Then the weather bureau calls Elf HQ. The storm formed over the park and nowhere else. Someone made it happen. Elf HQ thinks the Grinch is behind it, and he's already fled back to Mount Crumpit. SES is asked to search the park for items of interest and log them.",
     "It's a full storm callout in miniature: find the incident, make it safe, treat the injured, find the missing person, protect the evidence and get everyone out.",
   ],
   grinch:
-    "The Grinch is long gone and never appears. Investigation teams don't chase anyone. Their job is the real SES one: find it, don't touch it, mark it, log it and radio it through to Elf HQ. Police work separately and collect items later. Anything moved or handled can ruin the case.",
+    "The Grinch is long gone and never appears. Investigation teams don't chase anyone. Their job is the real SES one: find it, don't touch it, mark it, log it and radio it through to Elf HQ. Once something is moved or handled, nobody can tell where it was or how it got there.",
   aim: "Run a complete SES storm response, from the first radio call to the handover, in one connected scenario. Members practise navigation, comms, casualty care, search and rescue as one job, the way a real callout runs, instead of as separate drills.",
   glance: [
     ["What", "A scenario-based field exercise in a local park"],
@@ -261,7 +261,7 @@ export const phases: Phase[] = [
   ], watch: "A log someone else could actually use. Numbers, times and names, not \"some fur near a tree\"." },
   { num: 8, title: "Handover and pack up", meta: "10 MIN · ALL", steps: [
     "Rescue teams hand over to \"paramedics\": who, what injury, what treatment, what time.",
-    "Investigation teams hand the evidence log and photos to Elf HQ, to pass on to police.",
+    "Investigation teams hand the evidence log and photos to Elf HQ.",
     "Pack up kit and props.",
   ] },
   { num: 9, title: "Debrief", meta: "15 MIN · ELF HQ", steps: [
@@ -290,11 +290,11 @@ export const evidenceSteps: [string, string][] = [
   ["Map", "Drop a CalTopo marker with the same number."],
   ["Log", "Number, time, finder, what it is and exactly where."],
   ["Protect", "Tape it off if needed. Keep one path in and out."],
-  ["Report", "Radio it through to Elf HQ. Leave it in place. Police collect items separately, never SES."],
+  ["Report", "Radio it through to Elf HQ. Leave it in place. Never pick it up or take it with you."],
 ];
 export const evidenceLogColumns = ["No.", "Time", "Found by", "What it is", "Where (CalTopo / landmark)", "Photo taken"];
 export const stormOMatic =
-  "The investigation team finds the Storm-O-Matic in the trees, lights still flashing, with a torn page beside it: \"Second storm at 1:30.\" It's evidence and a hazard, so they **don't touch it**. They cordon it, read the timer from a distance and radio it through. HQ radios the rescue teams that the clock is running. If no team finds it by 1:20, Elf HQ \"gets a tip-off\" and sends the nearest team to that area.";
+  "The investigation team finds the Storm-O-Matic in the trees, lights still flashing, with a torn page beside it: \"Second storm at 1:30.\" It's both a find and a hazard, so they **don't touch it**. They cordon it, read the timer from a distance and radio it through. HQ radios the rescue teams that the clock is running. If no team finds it by 1:20, Elf HQ \"gets a tip-off\" and sends the nearest team to that area.";
 
 // ---------- Clue cards ----------
 
